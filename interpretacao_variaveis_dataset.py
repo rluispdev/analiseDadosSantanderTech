@@ -34,3 +34,4 @@ sns.scatterplot(x="body_mass_g", y="bill_length_mm", hue="species", data=peguins
 sns.pairplot(peguins, hue="species")
 
 plt.show()  # Exibe os gráficos
+
