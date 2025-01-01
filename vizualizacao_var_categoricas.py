@@ -23,8 +23,17 @@ print( iris["species"].value_counts)
 col = "sepal_length"
 sns.histplot(data=iris, x=col, kde=True).set_title(f"Distribuição da variável {col}")
 
-for col in iris.drop(columns = "species"):
-    sns.histplot(data=iris, x=col, kde=True).set_title(f"Distribuição da variável {col}")
+# Iterar sobre as colunas numéricas (excluindo "species")
+for col in iris.drop(columns="species"):
+    # Gráfico de distribuição (histograma)
+    plt.figure(figsize=(12, 5))  # Define o tamanho da figura
+    plt.subplot(1, 2, 1)  # Subplot 1: Histograma
+    sns.histplot(data=iris, x=col, kde=True, hue="species").set_title(f"Distribuição da variável {col}")
 
-plt.show() #  Mostrar o gráfico interativamente
-plt.close() # Fecha o plot para evitar sobreposição com os próximos plots
+    # Gráfico de barras
+    plt.subplot(1, 2, 2)  # Subplot 2: Gráfico de barras
+    sns.barplot(data=iris, x="species", hue= iris["species"], y=col, ci=90)
+    plt.title(f"Gráfico de barras para {col}")
+
+    plt.tight_layout()  # Ajusta os subplots para não sobrepor elementos
+    plt.show()  # Exibe os gráficos
